@@ -49,7 +49,7 @@ public class frmProcesoAplicacionPerfil extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblApsAsignadas = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        QuitarTodos = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblApsDisponibles = new javax.swing.JTable();
         QuitarUno = new javax.swing.JButton();
@@ -128,11 +128,11 @@ public class frmProcesoAplicacionPerfil extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Quitar");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("<<");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        QuitarTodos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        QuitarTodos.setText("<<");
+        QuitarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                QuitarTodosActionPerformed(evt);
             }
         });
 
@@ -222,7 +222,7 @@ public class frmProcesoAplicacionPerfil extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AsignarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AsignarUnaAp, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(QuitarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(QuitarUno, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -284,7 +284,7 @@ public class frmProcesoAplicacionPerfil extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(QuitarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(QuitarUno, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)))))
@@ -443,9 +443,26 @@ public class frmProcesoAplicacionPerfil extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_AsignarUnaApActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void QuitarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarTodosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        // Por: Luis Diego Cortez Mérida, 9959-20-7425
+        String is=txtIdPerfil.getText();
+        if(is.length()>0){
+            DefaultTableModel modeloDestino = (DefaultTableModel)tblApsAsignadas.getModel();
+            tblApsAsignadas.getModel();{        
+                clsAplicacionPerfil aplicacionusuario = new clsAplicacionPerfil();
+                aplicacionusuario.setIdPerfil(Integer.parseInt(txtIdPerfil.getText()));
+                int a = tblApsAsignadas.getRowCount();
+                for(int i=a-1; i>=0; i--){
+                    aplicacionusuario.setBorrarTodoAplicacion(aplicacionusuario);
+                    modeloDestino.removeRow(i);  
+                }  
+                JOptionPane.showMessageDialog(null,"Aplicaciones para el usuario Eliminada exitosamente");
+            }   
+        }else{
+            JOptionPane.showMessageDialog(null,"Debe ingresar el ID del Usuario");
+        }
+    }//GEN-LAST:event_QuitarTodosActionPerformed
 
     private void QuitarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarUnoActionPerformed
         // TODO add your handling code here:
@@ -466,7 +483,7 @@ public class frmProcesoAplicacionPerfil extends javax.swing.JInternalFrame {
                 if(JOptionPane.OK_OPTION==confirmar) {
                     aplicacionperfil.setBorrarAplicacion(aplicacionperfil);
                     model.removeRow(s);
-                    JOptionPane.showMessageDialog(null,"La aplicacion para el perfil se a Eliminado exitosamente" );
+                    JOptionPane.showMessageDialog(null,"Todas las aplicaciones para el perfil Eliminadas exitosamente" );
                 }
             }
         }else{
@@ -529,11 +546,11 @@ public class frmProcesoAplicacionPerfil extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AsignarTodo;
     private javax.swing.JButton AsignarUnaAp;
+    private javax.swing.JButton QuitarTodos;
     private javax.swing.JButton QuitarUno;
     private javax.swing.JButton btnBuscarPerfil;
     private javax.swing.JButton btnLimpiarPerfil;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

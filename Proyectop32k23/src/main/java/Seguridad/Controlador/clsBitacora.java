@@ -102,7 +102,7 @@ public class clsBitacora {
     
     @Override
     public String toString() {
-        return "clsBitacora{" + "IdBitacora=" + IdBitacora + ", FechaBitacora=" + FechaBitacora + ", AccionBitacora=" + AccionBitacora + ", IpBitacora=" + IpBitacora + ", IdUsuario=" + IdUsuario + ", IdAplicacion=" + IdAplicacion + ", NombrePcBitacora=" + NombrePcBitacora + '}';
+        return "clsBitacora{" + "bitid=" + IdBitacora + ", bitfecha=" + FechaBitacora + ", bitaccion=" + AccionBitacora + ", bitip=" + IpBitacora + ", usuid=" + IdUsuario + ", aplid=" + IdAplicacion + ", NombrePcBitacora=" + NombrePcBitacora + '}';
     }
     public int setIngresarBitacora(int codigoUsuario, int codigoAplicacion, String accion)
     {

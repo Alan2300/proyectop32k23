@@ -57,6 +57,10 @@ public class clsAplicacion {
     public clsAplicacion() {
     }
 
+    @Override
+    public String toString() {
+        return "clsAplicacion{" + "IdAplicacion=" + IdAplicacion + ", NombreAplicacion=" + NombreAplicacion + ", EstatusAplicacion=" + EstatusAplicacion + '}';
+    }
     
     //Metodos de acceso a la capa controlador
     public clsAplicacion getBuscarInformacionAplicacionPorNombre(clsAplicacion aplicacion)
