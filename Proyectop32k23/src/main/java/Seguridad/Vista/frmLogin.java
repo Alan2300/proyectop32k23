@@ -6,7 +6,6 @@
 package Seguridad.Vista;
 
 import Inventarios.Vista.MdiInventario;
-import Cuentas_Corrientes.Vista.MdiCCorrientes;
 import Seguridad.Controlador.clsUsuario;
 import java.awt.HeadlessException;
 
@@ -221,7 +220,7 @@ public class frmLogin extends javax.swing.JFrame {
                         break;
                         case "Cuentas Corrientes":
                         try {
-                            MdiCCorrientes menu = new MdiCCorrientes();
+                            MdiSeguridad menu = new MdiSeguridad();
                             menu.setVisible(true);
                             this.dispose();
                         } catch (Exception e) {

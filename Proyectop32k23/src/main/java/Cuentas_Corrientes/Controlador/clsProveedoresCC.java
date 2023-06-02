@@ -6,6 +6,7 @@ import java.util.List;
  * @author visitante
  */
  //Creado por Alan Abimael Galicia Ruano; 9959-21-3632
+//CAMBIO POR DANIEL ALEXANDER HALL ALVAREZ;9959-21-1395
 public class clsProveedoresCC {
     private int IdProv;
     private String FechaProv;
@@ -105,35 +106,10 @@ public class clsProveedoresCC {
     }
     
     //Metodos de acceso a la capa controlador   
- public clsProveedoresCC getBuscarInformacionProvNombre(clsProveedoresCC Prov)
-    {
-        daoProveedoresCC daoProveedoresCC = new daoProveedoresCC();
-        return daoProveedoresCC.consultaProveedorNombre(Prov);
-    }
- public clsProveedoresCC getBuscarInformacionProvId(clsProveedoresCC Prov)
-    {
-        daoProveedoresCC daoProveedoresCC = new daoProveedoresCC();
-        return daoProveedoresCC.consultaProveedorId(Prov);
-    }    
- public List<clsProveedoresCC> getListadoProveedores()
+ public List<clsProveedoresCC> getListadoT()
     {
         daoProveedoresCC daoProveedoresCC = new daoProveedoresCC();
         List<clsProveedoresCC> ListadoProveedores = daoProveedoresCC.consultaProveedores();
         return ListadoProveedores;
-    }
- public int setBorrarProv(clsProveedoresCC Prov)
-    {
-        daoProveedoresCC daoProveedoresCC = new daoProveedoresCC();
-        return daoProveedoresCC.borrarProveedor(Prov);
-    }          
-    public int setIngresarProv(clsProveedoresCC Prov)
-    {
-        daoProveedoresCC daoProveedoresCC = new daoProveedoresCC();
-        return daoProveedoresCC.ingresaProveedor(Prov);
-    }              
-    public int setModificarProv(clsProveedoresCC Prov)
-    {
-        daoProveedoresCC daoProveedoresCC = new daoProveedoresCC();
-        return daoProveedoresCC.actualizaProveedor(Prov);
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
  * @author visitante
  */
  //Creado por Alan Abimael Galicia Ruano; 9959-21-3632
-// Arreglos por Daniel Alexander Hall Alvarez; 9959-21-1395
+//CAMBIO POR DANIEL ALEXANDER HALL ALVAREZ;9959-21-1395
 public class clsTransaccionesCC {
     private int CodigoT;
     private String NombreT;

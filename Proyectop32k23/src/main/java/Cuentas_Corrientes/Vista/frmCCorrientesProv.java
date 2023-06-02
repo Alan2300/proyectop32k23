@@ -7,9 +7,7 @@ package Cuentas_Corrientes.Vista;
 
 
 //import Seguridad.Vista.*;
-import Cuentas_Corrientes.Controlador.clsProveedoresCC;
 import Cuentas_Corrientes.Controlador.clsCCorrientesProv;
-import Cuentas_Corrientes.Modelo.daoCCorrientesProv;
 import Cuentas_Corrientes.Controlador.clsProveedoresCC;
 import Seguridad.Controlador.clsUsuarioConectado;
 import Seguridad.Controlador.clsBitacora;
@@ -22,10 +20,8 @@ import java.sql.Connection;
 //import java.sql.ResultSet;
 //import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 //import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 //import java.util.Set;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -39,38 +35,29 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author visitante
  */
 public class frmCCorrientesProv extends javax.swing.JInternalFrame {
+    
 //int codigoAplicacion=preguntar;
-/*public void llenadoDeCB() {
-        clsProveedoresCC proveedoresC = new clsProveedoresCC();
-        List<clsProveedoresCC> ListadoProveedores = proveedoresC.getListadoProv();
-=======
     /*
 public void llenadoDeCB() {
         clsProveedoresCC proveedoresC = new clsProveedoresCC();
         List<clsProveedoresCC> ListadoProveedores = proveedoresC.getListadoT();
->>>>>>> 5da0ece71c26d9f3633c060eeeeb20f6c4ca53ce
         cbIdProv.setAlignmentX(Component.CENTER_ALIGNMENT);
         cbIdProv.addItem("Seleccionar...");
         for (int i = 0; i < ListadoProveedores.size(); i++) {
             cbIdProv.addItem(String.valueOf(ListadoProveedores.get(i).getIdProv));
-<<<<<<< HEAD
         }
-    }*/
-         
+    }
+    */
     public void llenadoDeCB() {
         clsProveedoresCC prov = new clsProveedoresCC();
-    List<clsProveedoresCC> listaProv = prov.getListadoProveedores();
-     cbIdProv.removeAllItems();
-    Set <Integer> idSet= new HashSet<>();
-    cbIdProv.addItem("Seleccionar");
-    cbIdProv.setAlignmentX(Component.CENTER_ALIGNMENT);
-    for (clsProveedoresCC idDeProv : listaProv){
-        int Id = idDeProv.getIdProv();
-        String Nombre = idDeProv.getNombreProv();
-        if(!idSet.contains(Id+" - "+Nombre)){
-            cbIdProv.addItem(String.valueOf(Id)+" - "+Nombre);
-            idSet.add(Id);    }
-    }
+        List<clsProveedoresCC> listaProv = prov.getListadoT();
+        cbIdProv.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cbIdProv.addItem("Seleccionar...");
+        for (int i = 0; i < listaProv.size(); i++) {
+            clsProveedoresCC provee = listaProv.get(i);
+            String item = provee.getIdProv() + " - " +  prov.getFactProv();
+            cbIdProv.addItem(item);
+        }
         
     }
     
@@ -82,6 +69,7 @@ public void llenadoDeCB() {
             cbox_empleado.addItem(empleados.get(i).getNombreEmpleado());
         } */
     //}
+
 public void llenadoDeTabla() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID CCorrientes");
@@ -110,12 +98,14 @@ public void llenadoDeTabla() {
             modelo.addRow(dato);
         }   
     }
+    
     int codigoAplicacion= 12;
     public frmCCorrientesProv() {
         initComponents();
         llenadoDeTabla();
         llenadoDeCB();       
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -153,7 +143,7 @@ public void llenadoDeTabla() {
         label12 = new javax.swing.JLabel();
         txtnofac = new javax.swing.JTextField();
         txttipocuenta = new javax.swing.JTextField();
-        btnReporte = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         cbIdProv = new javax.swing.JComboBox<>();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
@@ -298,10 +288,10 @@ public void llenadoDeTabla() {
             }
         });
 
-        btnReporte.setText("Reporte");
-        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Reporte");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -363,7 +353,7 @@ public void llenadoDeTabla() {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(109, 109, 109))))
         );
         layout.setVerticalGroup(
@@ -379,7 +369,7 @@ public void llenadoDeTabla() {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
-                    .addComponent(btnReporte))
+                    .addComponent(jButton1))
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(22, 22, 22)
@@ -473,19 +463,20 @@ public void llenadoDeTabla() {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //Alan Abimael Galicia Ruano, Luis Diego Cortez
         clsCCorrientesProv transaccion = new clsCCorrientesProv();
-        transaccion.setIdCCorrienteProv(Integer.parseInt(txtbuscado.getText()));
-        transaccion = transaccion.getBuscarInformacionCCProvPorId(transaccion);
-        transaccion.setTipoCCorrienteProv(transaccion.getTipoCCorrienteProv());
-        transaccion.setFechaCCorrienteProv(transaccion.getFechaCCorrienteProv());
-        transaccion.setNombreCCorrienteProv(transaccion.getNombreCCorrienteProv());
-        transaccion.setNofacturaCCorrienteProv(transaccion.getNofacturaCCorrienteProv());
-        //transaccion.setFacturaCCorrienteProv(Double.parseDouble(transaccion.setFacturaCCorrienteProv()));
-        transaccion.setCancelacionProv(Double.parseDouble(txtsaldo.getText()));
+        transaccion.setTipoCCorrienteProv(txttipocuenta.getText());
+        transaccion.setFechaCCorrienteProv(txtfecha.getText());
+        transaccion.setNombreCCorrienteProv(txtnombreC.getText());
+        transaccion.setNofacturaCCorrienteProv(txtnofac.getText());
+
         String selectedItem = cbIdProv.getSelectedItem().toString();
             int itemId = Integer.parseInt(selectedItem.split(" - ")[0]);
             transaccion.setIdTipoCCorrienteProv(itemId);
+            
+        
+        
         transaccion.setFacturaCCorrienteProv(Double.parseDouble(txttotfac.getText()));
         transaccion.setCancelacionProv(Double.parseDouble(txtsaldo.getText()));
+
         double TotalEnFactura = Double.parseDouble(txttotfac.getText());
         transaccion.setFacturaCCorrienteProv(TotalEnFactura);
         double TotalSaldo = Double.parseDouble(txtsaldo.getText());
@@ -562,13 +553,14 @@ public void llenadoDeTabla() {
         // TODO add your handling code here:
     }//GEN-LAST:event_txttipocuentaActionPerformed
 
-    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         // REALIZADO POR : DANIEL ALEXANDER HALL ALVAREZ;9959-21-1395
         Connection conn = null;        
         Map p = new HashMap();
         JasperReport report;
         JasperPrint print;
+
         try {
             conn = Conexion.getConnection();
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
@@ -580,7 +572,7 @@ public void llenadoDeTabla() {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_btnReporteActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtnofacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnofacActionPerformed
         // TODO add your handling code here:
@@ -595,9 +587,8 @@ public void llenadoDeTabla() {
         txtnombreC.setText("");
         txttotfac.setText("");
         txtsaldo.setText("");
-        }
-       
-        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -606,8 +597,8 @@ public void llenadoDeTabla() {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnReporte;
     private javax.swing.JComboBox<String> cbIdProv;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
